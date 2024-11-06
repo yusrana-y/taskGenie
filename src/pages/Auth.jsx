@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerAPI, loginAPI } from '../services/allAPI'
 import Spinner from 'react-bootstrap/Spinner';
 import { useContext } from 'react';
@@ -130,12 +130,12 @@ const Auth = ({ insideRegister }) => {
 
               {insideRegister ?
                 <div> <button className='btn bg-primary text-center w-50 fs-5 mt-3' onClick={handleRegister}>Register</button>
-                  <h5 className='pt-2'>Already registered? <a href="/login">Login </a></h5></div>
+                  <h5 className='pt-2'>Already registered? <Link to='/login'>Login</Link></h5></div>
                 :
                 <div> <button className='btn bg-primary text-center w-50 fs-5 mt-3 ' onClick={handleLogin}>Login  {isLoading && <Spinner animation="border" variant="light"  className="ms-3"/>}
  
 </button>
-                  <h5 className='pt-2'>Not yet registered? <a href="/register">Register Now</a></h5></div>
+                  <h5 className='pt-2'>Not yet registered?<Link to='/register'>Register Now</Link></h5></div>
               }
             </form>
           </div>
