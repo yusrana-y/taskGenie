@@ -15,6 +15,10 @@ const Dashboard = () => {
 
 
   const [allTask, setAllTask] = useState([])
+  const [searchKey,setSearchKey] = useState("")
+
+  console.log(searchKey);
+  
 
   const [currentPage,setCurrentPage] = useState(1)
   const taskPerPage = 6
@@ -41,20 +45,22 @@ const Dashboard = () => {
 
   useEffect(() => {
     getAllTask()
-  }, [addResponse,deleteResponse,updateResponse])
+  }, [addResponse,deleteResponse,updateResponse,searchKey])
 
+  
   const getAllTask = async () => {
     //get the token 
     const token = sessionStorage.getItem("token")
-    console.log(token);
-
+    // console.log(token);
+    // console.log("im called");    
+    
     //api call
     if (token) {
       try {
         const reqHeader = {
           'Authorization': `Bearer ${token}`
         }
-        const result = await getAllTaskAPI(reqHeader)
+        const result = await getAllTaskAPI(searchKey,reqHeader)
         // console.log(result.data);
 
         if (result.status == 200) {
@@ -71,7 +77,7 @@ const Dashboard = () => {
       }
     }
 
-    console.log(allTask);
+    // console.log(allTask);
 
   }
 
@@ -81,6 +87,7 @@ const Dashboard = () => {
       <div className="container mt-5">
         <Add />
         
+        <input type="text" className="form-control w-25 shadow border border-1 ms-3" placeholder="Search task here" onChange={e=>setSearchKey(e.target.value)} />
         <div className="container row mt-3">
         {allTask?.length > 0 ?
          slicedTask?.map((item)=>(

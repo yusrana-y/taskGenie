@@ -16,7 +16,7 @@ const Auth = ({ insideRegister }) => {
   const [userData, setUserData] = useState({
     username: "", email: "", password: ""
   })
-  console.log(userData);
+  // console.log(userData);
 
 
   const handleRegister = async (e) => {
@@ -58,7 +58,7 @@ const Auth = ({ insideRegister }) => {
     if (userData.email && userData.password) {
       try {
         const result = await loginAPI(userData)
-        console.log(result);
+        // console.log(result);
         if (result.status == 200) {
           sessionStorage.setItem("user", JSON.stringify(result.data.user))
           sessionStorage.setItem("token", result.data.token)

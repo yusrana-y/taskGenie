@@ -11,7 +11,7 @@ const TaskCard = ({ task }) => {
     const [taskDetails, setTaskDetails] = useState({
         id: task?._id, title: task?.title, desc: task?.desc, sDate: task?.sDate, eDate: task?.eDate
     })
-    console.log(taskDetails);
+    // console.log(taskDetails);
 
     const {updateResponse,setUpdateResponse} = useContext(updateResponseContext)
     const { deleteResponse, setDeleteResponse } = useContext(deleteResponseContext)
